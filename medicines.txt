@@ -1,0 +1,49 @@
+
+
+Pharmacist Name:Drug ID
+Pharmacist Phone:bvdb
+Pharmacist email:2 years
+Pharmacist email:dvffv
+Pharmacist email:Discolouration
+
+
+Pharmacist Name:Drug ID
+Pharmacist Phone:bvdb
+Pharmacist email:2 years
+Pharmacist email:dvffv
+Pharmacist email:Discolouration
+
+
+Pharmacist Name:Drug ID
+Pharmacist Phone:bvdb
+Pharmacist email:2 years
+Pharmacist email:dvffv
+Pharmacist email:Discolouration
+
+
+Drug ID:Drug ID
+Medicines name:jkl
+shelf life: 10 years
+Cures:bnm
+Side effect:Weakness
+
+
+Drug ID:sasc
+Medicines name:hngdhd
+shelf life: 5 years
+Cures:bhgdxg
+Side effect:Hormonal imbalance
+
+
+Drug ID:1123
+Medicines name:tylenol
+shelf life: 2 years
+Cures:depression
+Side effect:Hallucination
+
+
+Drug ID:56778
+Medicines name:advil
+shelf life: 10 years
+Cures:covid
+Side effect:Hallucination

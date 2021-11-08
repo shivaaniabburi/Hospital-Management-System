@@ -1,0 +1,65 @@
+
+
+Doc name:qwe
+room number:456
+
+Doctor name:sri
+Room number:975Speciality:Cardiology
+
+Doctor name:qwe
+Room number:rty
+Speciality:uio
+
+
+Doctor name:tarun
+Room number:213
+Speciality:Opthalmology
+Qualification:Doctor of Osteopathic Medicine (DO)
+
+
+Doctor name:larun
+Room number:123
+Speciality:Pathology
+Qualification:Doctor of Medicine (MD, Dr.MuD, Dr.Med)
+
+
+Doctor name:gegeg
+Room number:tgetg
+Speciality:Gynecology
+Qualification:Bachelor of Medicine, Bachelor of Surgery (MBBS, BMBS, MBChB, MBBCh)
+
+
+Doctor name:asd
+Room number:zxc
+Speciality:Gynecology
+Qualification:Bachelor of Medicine, Bachelor of Surgery (MBBS, BMBS, MBChB, MBBCh)
+
+
+Doctor name:nnlnk
+Room number:bgvdb
+Speciality:Gynecology
+Qualification:Bachelor of Medicine, Bachelor of Surgery (MBBS, BMBS, MBChB, MBBCh)
+
+
+Doctor name:hello
+Room number:213
+Speciality:Opthalmology
+Qualification:Doctor of Osteopathic Medicine (DO)
+
+
+Doctor name:bdkcban
+Room number:danjnl
+Speciality:Gynecology
+Qualification:Bachelor of Medicine, Bachelor of Surgery (MBBS, BMBS, MBChB, MBBCh)
+
+
+Doctor name:Shivaani
+Room number:123456
+Speciality:Cardiology
+Qualification:Doctor of Medicine (MD, Dr.MuD, Dr.Med)
+
+
+Doctor name:Shivaani
+Room number:213
+Speciality:Pediatrician
+Qualification:Doctor of Medicine (MD, Dr.MuD, Dr.Med)

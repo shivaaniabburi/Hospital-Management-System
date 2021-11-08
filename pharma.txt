@@ -1,0 +1,35 @@
+
+
+Pharmacist Name:haldi
+Pharmacist Phone:123
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:haldi
+Pharmacist Phone:123
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:
+Pharmacist Phone:
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:
+Pharmacist Phone:
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:nam1
+Pharmacist Phone:1245
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:Phivani
+Pharmacist Phone:1234567
+Pharmacist email:Enter E-mail
+
+
+Pharmacist Name:Phivani
+Pharmacist Phone:12455454
+Pharmacist email:Enter E-mail

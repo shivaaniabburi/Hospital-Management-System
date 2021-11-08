@@ -1,0 +1,46 @@
+
+
+Patient Name:che
+Patient ID:rno
+Patient sex:Male
+Patient medicine:byl
+
+
+Patient Name:
+Patient ID:
+Patient sex:Male
+Patient medicine:
+
+
+Patient Name:
+Patient ID:
+Patient sex:Male
+Patient medicine:
+
+
+Patient Name:
+Patient ID:
+Patient sex:Male
+Patient medicine:
+
+
+Patient Name:
+Patient ID:
+Patient sex:Male
+Patient medicine:
+
+
+Patient Name:pat1
+Patient ID:123
+Patient sex:Female
+Prime Symptoms:Female
+Diagnosis:covid
+Patient medicine:advil
+
+
+Patient Name:ananya
+Patient ID:234
+Patient sex:Female
+Prime Symptoms:Female
+Diagnosis:covid
+Patient medicine:tylenol
