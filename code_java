@@ -1,0 +1,857 @@
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.*;
+import javax.swing.SpinnerNumberModel;
+import java.io.File;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author shiva
+ */
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author shiva
+ */
+public class GUI extends javax.swing.JFrame {
+    
+    File f = new File("c:\\e files\\hospitalrecords");
+      int ln; int b; int s=3;
+     String Username,Password;
+    void createFolder() {
+        if(!f.exists()){
+            f.mkdirs();
+        }
+    }
+   
+    void readFile(){
+        try {
+            FileReader fr = new FileReader(f+"\\logins.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter fw = new FileWriter(f+"\\logins.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void addData(String usr,String pswd){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\logins.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Username:"+usr+ "\r\n");
+            raf.writeBytes("Password:"+pswd+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+   void CheckData(String usr,String pswd){
+   
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\logins.txt", "rw");
+            String line = raf.readLine();
+            Username =line.substring(9);
+            Password=raf.readLine().substring(9);
+           
+            if(usr.equals(Username)& pswd.equals(Password)){
+                b=5;
+            }else{
+                JOptionPane.showMessageDialog(null, "Wrong user/Password");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
+    void countLines(){
+        try {
+            ln=0;
+            RandomAccessFile raf = new RandomAccessFile(f+"\\logins.txt", "rw");
+            for(int i=0;raf.readLine()!=null;i++){
+                ln++;
+            }
+            System.out.println("number of lines:"+ln);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+     void dreadFile(){
+        try {
+            FileReader dfr = new FileReader(f+"\\doc.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter dfw = new FileWriter(f+"\\doc.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void daddData(String nam,String roomno,String spc,String qual){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\doc.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Doctor name:"+nam+ "\r\n");
+            raf.writeBytes("Room number:"+roomno+ "\r\n");
+            raf.writeBytes("Speciality:"+spc+ "\r\n");
+            raf.writeBytes("Qualification:"+qual+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    void preadFile(){
+        try {
+            FileReader pfr = new FileReader(f+"\\patient.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter pfw = new FileWriter(f+"\\patient.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void paddData(String name,String pid,String sex,String symp,String diag,String med){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\patient.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Patient Name:"+name+ "\r\n");
+            raf.writeBytes("Patient ID:"+pid+ "\r\n");
+            raf.writeBytes("Patient sex:"+sex+ "\r\n");
+            raf.writeBytes("Prime Symptoms:"+sex+ "\r\n");
+            raf.writeBytes("Diagnosis:"+diag+ "\r\n");
+            raf.writeBytes("Patient medicine:"+med+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    void mreadFile(){
+        try {
+            FileReader mfr = new FileReader(f+"\\pharma.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter mfw = new FileWriter(f+"\\pharma.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void maddData(String name,String phone,String email){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\pharma.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Pharmacist Name:"+name+ "\r\n");
+            raf.writeBytes("Pharmacist Phone:"+phone+ "\r\n");
+            raf.writeBytes("Pharmacist email:"+email+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    void medreadFile(){
+        try {
+            FileReader medfr = new FileReader(f+"\\medicines.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter medfw = new FileWriter(f+"\\medicines.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void medaddData(String id,String name,String shelf,String cure,String sideeff){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\medicines.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Drug ID:"+id+ "\r\n");
+            raf.writeBytes("Medicines name:"+name+ "\r\n");
+            raf.writeBytes("shelf life: "+shelf+ "\r\n");
+             raf.writeBytes("Cures:"+cure+ "\r\n");
+              raf.writeBytes("Side effect:"+sideeff+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public void rreadFile(){
+        try {
+            FileReader rfr = new FileReader(f+"\\reception.txt");
+            System.out.println("file exists!");
+        } catch (FileNotFoundException ex) {
+            try {
+                FileWriter rfw = new FileWriter(f+"\\reception.txt");
+                System.out.println("File created");
+            } catch (IOException ex1) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        
+    }
+    void raddData(String rnam,String rphone,String remail){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\reception.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            //if condition added after video to have no lines on first entry
+            if(ln>0){
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            }
+            raf.writeBytes("Receptionist name:"+rnam+ "\r\n");
+            raf.writeBytes("Phone number:"+rphone+ "\r\n");
+            raf.writeBytes("E- mail:"+remail+ "\r\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+     void logic(String usr,String pswd){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(f+"\\logins.txt", "rw");
+            for(int i=0;i<ln;i+=4){System.out.println("count "+i);
+            
+                String forUser = raf.readLine().substring(9);
+                String forPswd = raf.readLine().substring(9);
+                if(usr.equals(forUser) & pswd.equals(forPswd)){
+                    JOptionPane.showMessageDialog(null, "password matched");
+                    break;
+                }else if(i==(ln-3)){
+                    JOptionPane.showMessageDialog(null, "incorrect username/password");
+                    break;
+                }
+           
+                for(int k=1;k<=2;k++){
+                    raf.readLine();
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    
+
+
+    
+    
+            
+    public static void main(String[] args)
+            { GUI obj = new GUI();
+   JFrame frame= new JFrame("HOSPITAL MANAGEMENT SOFTWARE");
+    frame.setSize(900,700);
+    frame.setVisible(true);
+    frame.setLayout(null);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    JLabel label =new JLabel("LIFELINE HOSPITAL");
+    label.setBounds(50,50,400,30);
+    label.setForeground(Color.red);
+    label.setFont(new Font("calibri",Font.BOLD,30)); 
+    frame.add(label);
+    
+    JTabbedPane tab =new JTabbedPane();
+    tab.setBounds(50, 100,800 , 500);
+    tab.setBackground(Color.white);
+   
+    //Tab 1 
+    JPanel rpanel= new JPanel();
+    rpanel.setLayout(null);
+    rpanel.setBounds(0,0,500,450);
+    rpanel.setVisible(false);
+    tab.add(rpanel);
+    
+    JLabel ruser=new JLabel("Username");
+    ruser.setBounds(50,30,400,30);
+    ruser.setForeground(Color.black);
+    rpanel.add(ruser);
+    
+    JTextField usertext=new JTextField(20);
+    usertext.setBounds(120,30, 165, 25);
+    rpanel.add(usertext);
+    
+    JLabel password=new JLabel("Password");
+    password.setBounds(50,60,400,30);
+    password.setForeground(Color.black);
+    rpanel.add(password);
+    
+    JPasswordField passwordtext=new JPasswordField(20);
+    passwordtext.setBounds(120, 60, 165, 25);
+    rpanel.add(passwordtext);
+    
+    JButton login=new JButton("LOGIN");
+    login.setBounds(50,100,80,25);
+    rpanel.add(login);
+    
+    
+    
+    JLabel label3 = new JLabel("Don't have an account yet?");
+    label3.setFont(new Font("calibri",Font.BOLD,15));
+    label3.setBounds(50,130,500,30);
+    rpanel.add(label3);
+    
+    JButton register=new JButton("CREATE");
+    register.setBounds(50,150,80,25);
+    rpanel.add(register);
+   
+    
+    //subpanel for receptionist tab
+    
+    JPanel rsubpanel= new JPanel();
+    rsubpanel.setLayout(null);
+    rsubpanel.setBounds(0,0,500,450);
+    rsubpanel.setVisible(false);
+    rpanel.add(rsubpanel);
+    
+    JLabel rname= new JLabel("Enter Name");
+    rname.setBounds(50,170,200,40);
+    rsubpanel.add(rname);
+    JTextField rnametext=new JTextField(20);
+   rnametext.setBounds(200, 170, 250, 25);
+    rsubpanel.add(rnametext); 
+    JLabel rphone= new JLabel("Enter Phone Number");
+    rphone.setBounds(50,200,200,40);
+    rsubpanel.add(rphone);
+    JTextField rphonetext=new JTextField(20);
+    rphonetext.setBounds(200, 200, 250, 25);
+    rsubpanel.add(rphonetext);
+    JLabel email= new JLabel("Enter E-Mail ID");
+    email.setBounds(50,230,200,40);
+    rsubpanel.add(email);
+    JTextField emailtext=new JTextField(20);
+    emailtext.setBounds(200, 230, 250, 25);
+    rsubpanel.add(emailtext);
+     JLabel rnewuser= new JLabel("New Username");
+    rnewuser.setBounds(50,260,200,40);
+    rsubpanel.add(rnewuser);
+    JTextField rnewusertext=new JTextField(20);
+    rnewusertext.setBounds(200, 260, 250, 25);
+   rsubpanel.add(rnewusertext);
+    JLabel rnewpass= new JLabel("New Password");
+    rnewpass.setBounds(50,290,200,40);
+    rsubpanel.add(rnewpass);
+    JTextField rnewpasstext=new JTextField(20);
+    rnewpasstext.setBounds(200, 290, 250, 25);
+    rsubpanel.add(rnewpasstext);
+    JButton createacct=new JButton("Create Account");
+    createacct.setBounds(50,320,200,40);
+    rsubpanel.add(createacct);
+    
+    
+   register.addActionListener(new ActionListener()
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {rsubpanel.setVisible(true);}
+            });
+   createacct.addActionListener(new ActionListener()// create button opens 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {obj.createFolder(); 
+          obj.readFile();
+          obj.countLines();
+          obj.addData(rnewusertext.getText(),rnewpasstext.getText());  
+          JOptionPane.showMessageDialog(null,"Data Registered");
+          obj.raddData(rnametext.getText(),rphonetext.getText(),emailtext.getText());
+              }
+            });
+   login.addActionListener(new ActionListener()// login button 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {   
+            obj.createFolder();
+            obj.readFile();
+           obj.countLines();
+            obj.logic(usertext.getText(),passwordtext.getText());
+            }
+            });
+    
+    
+    
+    
+    //Tab 2 Doctors tab
+    JPanel dpanel= new JPanel();
+    dpanel.setLayout(null);
+    dpanel.setBounds(0,0,200,250);
+    dpanel.setVisible(true);
+    
+    JLabel dlabel= new JLabel("User");
+    dlabel.setBounds(50,20,400,30);
+    dlabel.setForeground(Color.black);
+    dpanel.add(dlabel);
+    
+    JTextField dusertext=new JTextField(20);
+    dusertext.setBounds(120, 20, 165, 25);
+    dpanel.add(dusertext);
+    
+    JLabel dpassword=new JLabel("Password");
+    dpassword.setBounds(50,50,400,30);
+    dpassword.setForeground(Color.black);
+    dpanel.add(dpassword);
+    
+    JPasswordField dpasswordtext=new JPasswordField(20);
+    dpasswordtext.setBounds(120, 50, 165, 25);
+    dpanel.add(dpasswordtext);
+    
+    JButton dlogin=new JButton("LOGIN");
+    dlogin.setBounds(50,80,80,25);
+    dpanel.add(dlogin);
+    
+    
+    
+    
+    
+    
+
+
+
+    //new frame  for login button
+    JFrame dframe= new JFrame("PATIENT DETAILS");
+    dframe.setSize(900,700);
+    dframe.setVisible(false);
+    dframe.setLayout(null);
+    dframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    JPanel dsubpanel2= new JPanel();
+    dsubpanel2.setLayout(null);
+    dsubpanel2.setBounds(0,0,900,550);
+    dsubpanel2.setVisible(false);
+    dframe.add(dsubpanel2);
+    JLabel pname= new JLabel("Enter Patients Name");
+    pname.setBounds(50,50,200,40);
+    dsubpanel2.add(pname);
+    JTextField pnametext=new JTextField(20);
+    pnametext.setBounds(250, 50, 250, 25);
+    dsubpanel2.add(pnametext); 
+    JLabel pid= new JLabel("Enter Patient ID");
+    pid.setBounds(50,80,200,40);
+    dsubpanel2.add(pid);
+    JTextField pidtext=new JTextField(20);
+    pidtext.setBounds(250, 80, 250, 25);
+    dsubpanel2.add(pidtext); 
+   
+   JLabel psex= new JLabel("Enter Sex");
+    psex.setBounds(50,110,200,40);
+    dsubpanel2.add(psex);
+   String gender[]={"Male","Female","Other"};
+    JComboBox gen=new JComboBox(gender);
+    gen.setBounds(250,110,250,20);
+    dsubpanel2.add(gen);
+    
+    JLabel prs= new JLabel("Prime Symptom");
+    prs.setBounds(50,140,200,40);
+    dsubpanel2.add(prs);
+    String symp[]={"Runny Nose","Spots and Blisters","Headache","Fever","Breathing Difficulty"};
+    JComboBox psymp=new JComboBox(symp);
+    psymp.setBounds(250,140,250,20);
+    dsubpanel2.add(psymp);
+    JLabel diag= new JLabel("Diagnosis");
+    diag.setBounds(50,170,200,40);
+    dsubpanel2.add(diag);
+    JTextField diagtext=new JTextField(20);
+    diagtext.setBounds(250, 170, 250, 25);
+    dsubpanel2.add(diagtext);
+    JLabel meds= new JLabel("Prescribe Medication");
+    meds.setBounds(50,200,200,40);
+    dsubpanel2.add(meds);
+    JTextField medstext=new JTextField(20);
+    medstext.setBounds(250, 200, 250, 25);
+    dsubpanel2.add(medstext);
+    
+    JButton savepd= new JButton("Save Patient Details");
+    savepd.setBounds(100,250,250,40);
+    dsubpanel2.add(savepd);
+    
+    savepd.addActionListener(new ActionListener()// save button  
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {
+            obj.paddData(pnametext.getText(),pidtext.getText(),(String) gen.getSelectedItem(),(String) psymp.getSelectedItem(),diagtext.getText(),medstext.getText());
+           obj.preadFile(); }
+            });
+    
+    
+   
+    
+  
+    dlogin.addActionListener(new ActionListener()// login button opens  
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {   
+            obj.createFolder();
+            obj.readFile();
+            obj.addData("shiv","1234");
+            obj.logic(dusertext.getText(),dpasswordtext.getText());
+            obj.CheckData(dusertext.getText(),dpasswordtext.getText());
+            if(obj.b==5)
+            {dframe.setVisible(true);
+            dsubpanel2.setVisible(true);}
+            obj.countLines();
+            
+            }
+            });
+    
+    
+    JLabel label4 = new JLabel("Don't have an account yet?");
+    label4.setFont(new Font("calibri",Font.BOLD,15));
+    label4.setBounds(50,110,500,30);
+    dpanel.add(label4);
+    
+    JButton dregister=new JButton("CREATE");
+    dregister.setBounds(50,140,80,25);
+    dpanel.add(dregister);
+    
+    //subpanel for doc tabs create
+    JPanel dsubpanel= new JPanel();
+    dsubpanel.setLayout(null);
+    dsubpanel.setBounds(0,0,600,450);
+    dsubpanel.setVisible(false);
+    dpanel.add(dsubpanel);
+    JLabel docname= new JLabel("Enter Name");
+    docname.setBounds(50,170,200,40);
+    dsubpanel.add(docname);
+    JTextField dnametext=new JTextField(20);
+    dnametext.setBounds(200, 170, 250, 25);
+    dsubpanel.add(dnametext); 
+    JLabel speciality= new JLabel("Enter Speciality");
+    speciality.setBounds(50,200,200,40);
+    dsubpanel.add(speciality);
+    /*JTextField specialitytext=new JTextField(20);
+    specialitytext.setBounds(200, 200, 250, 25);
+    dsubpanel.add(specialitytext);*/
+    String specialization[]={"Gynecology","Dermatology","Cardiology","Pediatrician","Pathology","Opthalmology"};
+    JComboBox scb=new JComboBox(specialization);
+    scb.setBounds(200,200,250,20);
+    dsubpanel.add(scb);
+    
+   JLabel qual= new JLabel("Enter Qualification");
+    qual.setBounds(50,230,200,40);
+    dsubpanel.add(qual);
+    String qualification[]={"Bachelor of Medicine, Bachelor of Surgery (MBBS, BMBS, MBChB, MBBCh)","Doctor of Medicine (MD, Dr.MuD, Dr.Med)","Doctor of Osteopathic Medicine (DO)"};
+    JComboBox qcb=new JComboBox(qualification);
+    qcb.setBounds(200,230,250,20);
+    dsubpanel.add(qcb);
+    JLabel roomno= new JLabel("Enter Room Number");
+    roomno.setBounds(50,260,200,40);
+    dsubpanel.add(roomno);
+    JTextField roomnotext=new JTextField(20);
+    roomnotext.setBounds(200, 260, 250, 25);
+    dsubpanel.add(roomnotext);
+     JLabel newuser= new JLabel("New Username");
+    newuser.setBounds(50,290,200,40);
+    dsubpanel.add(newuser);
+    JTextField newusertext=new JTextField(20);
+    newusertext.setBounds(200, 290, 250, 25);
+    dsubpanel.add(newusertext);
+    JLabel newpass= new JLabel("New Password");
+    newpass.setBounds(50,320,200,40);
+    dsubpanel.add(newpass);
+    JTextField newpasstext=new JTextField(20);
+    newpasstext.setBounds(200, 320, 250, 25);
+    dsubpanel.add(newpasstext);
+    JButton dcreateacct=new JButton("Create Account");
+    dcreateacct.setBounds(50,350,200,40);
+    dsubpanel.add(dcreateacct);
+    dregister.addActionListener(new ActionListener()// create button opens subpanel 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {dsubpanel.setVisible(true);
+              }
+            });
+    dcreateacct.addActionListener(new ActionListener()// create button opens subpanel 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {obj.createFolder(); 
+          obj.readFile();
+          obj.countLines();
+          obj.addData(newusertext.getText(),newpasstext.getText());  
+          JOptionPane.showMessageDialog(null,"Data Registered");
+          obj.daddData(dnametext.getText(),roomnotext.getText(),(String) scb.getSelectedItem(),(String) qcb.getSelectedItem());
+              }
+            });
+    
+    
+   
+    //Pharmacist tab
+   JPanel phpanel =new JPanel();
+   phpanel.setLayout(null);
+    phpanel.setBounds(0,0,200,250);
+    phpanel.setVisible(true);
+    
+    JLabel phlabel= new JLabel("User");
+    phlabel.setBounds(50,20,400,30);
+    phlabel.setForeground(Color.black);
+    phpanel.add(phlabel);
+    
+    JTextField phusertext=new JTextField(20);
+    phusertext.setBounds(120, 20, 165, 25);
+    phpanel.add(phusertext);
+    
+    JLabel phpassword=new JLabel("Password");
+    phpassword.setBounds(50,50,400,30);
+    phpassword.setForeground(Color.black);
+    phpanel.add(phpassword);
+    
+    JPasswordField phpasswordtext=new JPasswordField(20);
+    phpasswordtext.setBounds(120, 50, 165, 25);
+    phpanel.add(phpasswordtext);
+    
+    JButton phlogin=new JButton("LOGIN");
+    phlogin.setBounds(50,80,80,25);
+    phpanel.add(phlogin);
+    
+    // new frsme for pharmacist login
+    JFrame phframe= new JFrame("DETAILS OF MEDICINES");
+    phframe.setSize(900,700);
+    phframe.setVisible(false);
+    phframe.setLayout(null);
+    phframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    JPanel phsubpanel2= new JPanel();
+    phsubpanel2.setLayout(null);
+    phsubpanel2.setBounds(0,0,900,450);
+    phsubpanel2.setVisible(false);
+    phframe.add(phsubpanel2);
+    JLabel phdid= new JLabel("Drug ID");
+    phdid.setBounds(120,80,100,25);
+    phsubpanel2.add(phdid);
+    JTextField phpidtext=new JTextField(20);
+    phpidtext.setBounds(250, 80, 250, 25);
+    phsubpanel2.add(phpidtext);
+    JLabel mname= new JLabel("Medicine's name");
+    mname.setBounds(120,110,100,25);
+    phsubpanel2.add(mname);
+    JTextField midtext=new JTextField(20);
+    midtext.setBounds(250, 110, 250, 25);
+    phsubpanel2.add(midtext);
+    JLabel shlife= new JLabel("Shelf life");
+    shlife.setBounds(120,140,200,40);
+    phsubpanel2.add(shlife);
+    
+    String shelflife[]={"5 months","1 year","2 years","5 years","10 years"};
+    JComboBox slf=new JComboBox(shelflife);
+    slf.setBounds(250,140,250,20);
+    phsubpanel2.add(slf);
+     JLabel seff= new JLabel("Side effects");
+    seff.setBounds(120,170,200,40);
+    phsubpanel2.add(seff);
+    
+    String sideff[]={"Drowsyness","Weakness","Discolouration","Hallucination","Hormonal imbalance"};
+    JComboBox sdf=new JComboBox(sideff);
+    sdf.setBounds(250,170,250,20);
+    phsubpanel2.add(sdf);
+    JLabel cure= new JLabel("Cures");
+    cure.setBounds(120,200,100,25);
+    phsubpanel2.add(cure);
+    JTextField curetext=new JTextField(20);
+    curetext.setBounds(250, 200, 250, 25);
+    phsubpanel2.add(curetext);
+    
+    JButton savemed= new JButton("Save Medicine Details");
+    savemed.setBounds(100,250,250,40);
+    phsubpanel2.add(savemed);
+    
+    savemed.addActionListener(new ActionListener()// save button  
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {
+            obj.medaddData(phpidtext.getText(),midtext.getText(),(String) slf.getSelectedItem(),curetext.getText(),(String) sdf.getSelectedItem());
+           obj.medreadFile(); }
+            });
+JLabel label5 = new JLabel("Don't have an account yet?");
+    label5.setFont(new Font("calibri",Font.BOLD,15));
+    label5.setBounds(50,110,500,30);
+    phpanel.add(label5);
+    
+    JButton phregister=new JButton("CREATE");
+    phregister.setBounds(50,140,80,25);
+    phpanel.add(phregister);
+        
+    //subpanel for pharmacist tab's create
+    JPanel phsubpanel= new JPanel();
+    phsubpanel.setLayout(null);
+    phsubpanel.setBounds(0,0,500,450);
+    phsubpanel.setVisible(false);
+    phpanel.add(phsubpanel);
+    
+    JLabel phname= new JLabel("Enter Name");
+    phname.setBounds(50,170,200,40);
+    phsubpanel.add(phname);
+    JTextField phnametext=new JTextField(20);
+    phnametext.setBounds(200, 170, 250, 25);
+    phsubpanel.add(phnametext); 
+    JLabel phphone= new JLabel("Enter Phone Number");
+    phphone.setBounds(50,200,200,40);
+    phsubpanel.add(phphone);
+    JTextField phphonetext=new JTextField(20);
+    phphonetext.setBounds(200, 200, 250, 25);
+    phsubpanel.add(phphonetext);
+    JLabel phemail= new JLabel("Enter E-mail");
+    phemail.setBounds(50,230,200,40);
+    phsubpanel.add(phemail);
+    JTextField phemailtext=new JTextField(20);
+    phemailtext.setBounds(200, 230, 250, 25);
+    phsubpanel.add(phemailtext);
+     JLabel phnewuser= new JLabel("New Username");
+    phnewuser.setBounds(50,260,200,40);
+    phsubpanel.add(phnewuser);
+    JTextField phnewusertext=new JTextField(20);
+    phnewusertext.setBounds(200, 260, 250, 25);
+    phsubpanel.add(phnewusertext);
+    JLabel phnewpass= new JLabel("New Password");
+    phnewpass.setBounds(50,290,200,40);
+    phsubpanel.add(phnewpass);
+    JTextField phnewpasstext=new JTextField(20);
+    phnewpasstext.setBounds(200, 290, 250, 25);
+    phsubpanel.add(phnewpasstext);
+    JButton phcreateacct=new JButton("Create Account");
+    phcreateacct.setBounds(50,320,200,40);
+    phsubpanel.add(phcreateacct);
+    phregister.addActionListener(new ActionListener()
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {phsubpanel.setVisible(true);}
+            });
+    phcreateacct.addActionListener(new ActionListener()// create button opens subpanel 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {obj.createFolder(); 
+          obj.mreadFile();
+          obj.countLines();
+          obj.addData(phnewusertext.getText(),phnewpasstext.getText());  
+          JOptionPane.showMessageDialog(null,"Data Registered");
+          obj.maddData(phnametext.getText(),phphonetext.getText(), phemail.getText());
+              }
+            });
+    phlogin.addActionListener(new ActionListener()// create button opens subpanel 
+            {@Override
+            public void actionPerformed(ActionEvent e)
+            {   
+            obj.createFolder();
+            obj.readFile();
+            obj.addData("phiv","1234");
+            obj.CheckData(phusertext.getText(),phpasswordtext.getText());
+            if(obj.b==5)
+            {if(obj.b==5)
+            {phframe.setVisible(true);
+                phsubpanel2.setVisible(true);}}
+            obj.countLines();}
+            });
+   tab.add("Receptionist",rpanel);
+    tab.add("Doctors",dpanel);
+    tab.add("Pharmacist",phpanel);
+    frame.add(tab);
+    frame.setVisible(true);
+     }
+
+    
+}
